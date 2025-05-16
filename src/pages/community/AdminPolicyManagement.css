@@ -1,25 +1,124 @@
 .policy-container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    font-family: sans-serif;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1300px;
+  margin: 10px auto;
+  padding: 20px;
+  font-family: sans-serif;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* 작은 화면에서 스크롤 허용 */
+  box-sizing: border-box;
+}
+
+.policy-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.policy-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.policy-form input {
+  flex: 1 1 200px;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.policy-form button {
+  padding: 8px 16px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.policy-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.policy-table th,
+.policy-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  word-break: break-word;
+}
+
+.policy-table th {
+  background-color: #1e293b;
+  color: white;
+}
+
+.policy-table td a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.policy-table button {
+  margin: 0 2px;
+  padding: 5px 10px;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.policy-table button:first-of-type {
+  background-color: #007bff;
+  color: white;
+}
+
+.policy-table button:last-of-type {
+  background-color: #f44336;
+  color: white;
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination span {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .policy-form {
+    flex-direction: column;
   }
-  
-  .policy-container h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+
+  .policy-table th,
+  .policy-table td {
+    font-size: 0.9rem;
+    padding: 8px;
   }
-  
-  .search-input {
+
+  .policy-form input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 25px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
   }
-  
-  
+
+  .policy-container {
+    padding: 16px;
+  }
+}
