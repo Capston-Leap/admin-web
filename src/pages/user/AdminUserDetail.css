@@ -1,0 +1,89 @@
+.user-detail-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    font-family: sans-serif;
+  }
+  
+  .user-detail-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .user-field {
+    margin-bottom: 15px;
+  }
+  
+  .user-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .user-field input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .user-field small {
+    color: #888;
+    font-size: 12px;
+  }
+  
+  .withdraw-button {
+    padding: 10px 20px;
+    background-color: #d11a2a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .withdraw-button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+  }
+  
+  .withdraw-info {
+    color: #b40000;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .user-detail-container {
+  padding: 2rem;
+}
+
+.user-detail-container h2 {
+  margin-bottom: 1rem;
+  font-size: 20px;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.withdraw-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.withdraw-button:hover {
+  background-color: #d32f2f;
+}

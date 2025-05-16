@@ -1,0 +1,75 @@
+// src/pages/dashboard/AdminDashboard.jsx
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { handleLogout } from "../../utils/logout";
+import axios from "../../api/axiosInstance";
+import "./AdminDashboard.css";
+
+import AdminUserDetail from "../user/AdminUserDetail";
+import AdminMissionManage from "../mission/AdminMissionManage";
+import AdminPolicyManagement from "../community/AdminPolicyManagement";
+import AdminPostManagement from "../post/AdminPostManagement";
+
+const AdminDashboard = () => {
+  const [stats, setStats] = useState({
+    userCount: 0,
+    missionCount: 0,
+    informationCount: 0,
+    postCount: 0,
+  });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get("/admin/dashboard")
+      .then((res) => {
+        setStats(res.data);
+      })
+      .catch((err) => {
+        console.error("대시보드 API 실패:", err);
+        if (err.response?.status === 401) {
+          alert("로그인 세션이 만료되었습니다. 다시 로그인해주세요.");
+          navigate("/admin/login");
+        }
+      });
+  }, [navigate]);
+
+  return (
+    <div className="dashboard-container">
+      <aside className="sidebar">
+        <h2><Link to="/admin/dashboard" className="dashboard-title">관리자 페이지</Link></h2>
+        <ul>
+          <li><Link to="/admin/dashboard/policymanagement">자립지원정보</Link></li>
+          <li><Link to="/admin/dashboard/missionmanage">미션</Link></li>
+          <li><Link to="/admin/dashboard/postmanagement">커뮤니티</Link></li>
+          <li><Link to="/admin/dashboard/userdetail">회원 관리</Link></li>
+        </ul>
+      </aside>
+
+      <main className="main-content">
+<div className="top-bar">
+  <button className="logout-button" onClick={handleLogout}>로그아웃</button>
+</div>
+
+        <Routes>
+          <Route index element={
+            <div className="card-grid">
+              <div className="card"><h3>총 이용자 수</h3><p>{stats.userCount}</p></div>
+              <div className="card"><h3>미션 수</h3><p>{stats.missionCount}</p></div>
+              <div className="card"><h3>자립지원정보 수</h3><p>{stats.informationCount}</p></div>
+              <div className="card"><h3>게시글 수</h3><p>{stats.postCount}</p></div>
+            </div>
+          } />
+
+          <Route path="userdetail" element={<AdminUserDetail />} />
+          <Route path="missionmanage" element={<AdminMissionManage />} />
+          <Route path="policymanagement" element={<AdminPolicyManagement />} />
+          <Route path="postmanagement" element={<AdminPostManagement />} />
+        </Routes>
+      </main>
+    </div>
+  );
+};
+
+export default AdminDashboard;
