@@ -45,15 +45,6 @@
   margin-bottom: 1rem;
 }
 
-.logout-button {
-  background-color: #f44336;
-  border: none;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

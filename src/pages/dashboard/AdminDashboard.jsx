@@ -37,20 +37,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <aside className="sidebar">
-        <h2><Link to="/admin/dashboard" className="dashboard-title">관리자 페이지</Link></h2>
-        <ul>
-          <li><Link to="/admin/dashboard/policymanagement">자립지원정보</Link></li>
-          <li><Link to="/admin/dashboard/missionmanage">미션</Link></li>
-          <li><Link to="/admin/dashboard/postmanagement">커뮤니티</Link></li>
-          <li><Link to="/admin/dashboard/userdetail">회원 관리</Link></li>
-        </ul>
-      </aside>
-
       <main className="main-content">
-<div className="top-bar">
-  <button className="logout-button" onClick={handleLogout}>로그아웃</button>
-</div>
 
         <Routes>
           <Route index element={
