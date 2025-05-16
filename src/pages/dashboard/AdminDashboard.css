@@ -1,7 +1,7 @@
 .dashboard-container {
   display: flex;
-  /* height: 100vh; */
-  min-height: 100vh; /* 수정 */
+  align-items: flex-start;
+  height: auto; 
 }
 
 .sidebar {
@@ -49,7 +49,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  margin-bottom: 2rem;
+  width: 900px; 
+  max-width: 90vw;
 }
 
 .card {
@@ -68,4 +69,16 @@
 .dashboard-title {
   color: white;
   text-decoration: none;
+}
+
+.dashboard-content {
+  max-width: 900px;
+  margin: 0 auto; /* 가운데 정렬 */
+  width: 100%;
+
+  /* 위아래 가운데 정렬을 위한 추가 */
+  display: flex;
+  justify-content: center;     /* 수평 중앙 */
+  align-items: center;         /* 수직 중앙 */
+  min-height: calc(100vh - 100px); /* 상단 사이드바 높이 제외하고 조절 (대충 맞게 조정 가능) */
 }

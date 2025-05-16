@@ -55,6 +55,6 @@
 .main-content {
     margin-left: 220px; /* 사이드바 너비만큼 왼쪽 여백 */
     padding: 2rem;
-    min-height: 100vh;
+    min-height: auto;
     overflow-x: hidden;
 }
