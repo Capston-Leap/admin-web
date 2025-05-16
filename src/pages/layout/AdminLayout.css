@@ -1,3 +1,4 @@
+/* 사이드바 고정 */
 .sidebar {
     position: fixed;
     top: 0;
@@ -6,47 +7,41 @@
     height: 100vh;
     background-color: #1e293b;
     color: white;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1.5rem;
-    box-sizing: border-box;
-  }
-  
-  .menu-area {
-    flex-grow: 1;
-  }
-  
-  .dashboard-title {
+}
+
+/* 관리자 페이지 제목 (상단) */
+.dashboard-title {
     color: white;
     text-decoration: none;
     font-size: 20px;
     margin-bottom: 1rem;
     display: block;
-  }
-  
-  .sidebar ul {
+}
+
+/* 메뉴 목록 */
+.sidebar ul {
     list-style: none;
     padding: 0;
     margin-top: 1rem;
-  }
-  
-  .sidebar ul li {
+}
+
+.sidebar ul li {
     margin-bottom: 1rem;
-  }
-  
-  .sidebar ul li a {
+}
+
+.sidebar ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-  }
-  
-  /* ✅ 로그아웃 버튼은 하단에 고정되도록 별도 영역으로 */
-  .logout-area {
+}
+
+/* 로그아웃 버튼 */
+.logout-button {
     margin-top: auto;
-  }
-  
-  .logout-button {
     background-color: #f44336;
     border: none;
     color: white;
@@ -54,4 +49,12 @@
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-  }
+}
+
+/* 오른쪽 메인 콘텐츠 */
+.main-content {
+    margin-left: 220px; /* 사이드바 너비만큼 왼쪽 여백 */
+    padding: 2rem;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
