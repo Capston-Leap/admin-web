@@ -8,7 +8,7 @@ const InfoPostManagement = () => {
   const communityId = 3;
   const [searchParams] = useSearchParams();
   const rawPage = Number(searchParams.get("page"));
-  const page = isNaN(rawPage) || rawPage < 0 ? 0 : rawPage;
+  const page = isNaN(rawPage) || rawPage < 1 ? 1 : rawPage;
 
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
