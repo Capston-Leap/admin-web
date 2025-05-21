@@ -1,0 +1,93 @@
+.mission-manage-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 10px auto;
+  padding: 20px;
+  font-family: sans-serif;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* 작은 화면에서 스크롤 허용 */
+  box-sizing: border-box;
+}
+
+.mission-register-container {
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.mission-register-form {
+  display: flex;
+  flex-direction: column; /* ← 세로 정렬 */
+  gap: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.mission-register-form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.mission-register-form button {
+  padding: 0.6rem;
+  background-color: #ef4444;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mission-register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.mission-register-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.mission-register-header h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.submit-button {
+  background-color: #ef4444;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}

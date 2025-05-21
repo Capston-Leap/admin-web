@@ -55,3 +55,18 @@
     cursor: pointer;
     width: 100%;
   }
+
+.dropdown-title {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dropdown-list {
+  list-style: none;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.dropdown-list li {
+  margin-bottom: 0.5rem;
+}

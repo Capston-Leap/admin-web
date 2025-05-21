@@ -39,7 +39,6 @@ const AdminPostManagement = () => {
       });
   };
 
-
   return (
     <div className="post-manage-container">
       <h2>게시글 관리</h2>

@@ -1,7 +1,7 @@
 // src/pages/dashboard/AdminDashboard.jsx
 import React, { useEffect, useState } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { handleLogout } from "../../utils/logout";
+import { Routes, Route, useNavigate } from "react-router-dom";
+//import { handleLogout } from "../../utils/logout";
 import axios from "../../api/axiosInstance";
 import "./AdminDashboard.css";
 
