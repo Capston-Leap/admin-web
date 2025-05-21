@@ -153,4 +153,31 @@ button:hover {
   background-color: #d32f2f;
 }
 
-  
+.community-nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.community-nav-buttons button {
+  padding: 8px 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.community-nav-buttons button:hover {
+  background-color: #1e40af;
+}
+
+.post-description {
+  text-align: center;
+  margin-top: 12px;
+  color: #333;
+  font-size: 14px;
+}

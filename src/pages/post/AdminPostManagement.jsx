@@ -1,94 +1,27 @@
-import React, { useState, useEffect, useCallback } from "react";
-import axios from "../../api/axiosInstance";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./AdminPostManagement.css";
-import PostDetailModal from "./PostDetailModal";
 
 const AdminPostManagement = () => {
-  const [posts, setPosts] = useState([]);
-  const [communityId, setCommunityId] = useState(2);
-  const [page] = useState(1);
-  const [size] = useState(10);
-  const [selectedPost, setSelectedPost] = useState(null);
+  const navigate = useNavigate();
 
-  const fetchPosts = useCallback(() => {
-    axios
-      .get(`/admin/community/${communityId}`, { params: { page, size } })
-      .then((res) => setPosts(res.data.content))
-      .catch((err) => {
-        console.error("게시글 목록 조회 실패", err);
-        alert("게시글 조회 중 오류 발생");
-      });
-  }, [communityId, page, size]);
-
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
-
-  const handleDelete = (postId) => {
-    if (!window.confirm("정말 이 게시글을 삭제하시겠습니까?")) return;
-
-    axios
-      .delete(`/admin/community/${communityId}/${postId}`)
-      .then(() => {
-        alert("삭제 성공");
-        fetchPosts(); // 새로고침
-      })
-      .catch((err) => {
-        console.error("삭제 실패", err);
-        alert("삭제 중 오류 발생");
-      });
+  const handleNavigate = (id) => {
+    navigate(`/admin/dashboard/postmanagement?communityId=${id}`);
   };
 
   return (
     <div className="post-manage-container">
-      <h2>게시글 관리</h2>
+      <h2 style={{ textAlign: "center" }}>게시글 관리</h2>
 
-      <div className="post-controls">
-        <label>Community ID: </label>
-        <input
-          type="number"
-          value={communityId}
-          onChange={(e) => setCommunityId(Number(e.target.value))}
-        />
+      <div className="community-nav-buttons">
+        <button onClick={() => handleNavigate(1)}>자유</button>
+        <button onClick={() => handleNavigate(2)}>고민</button>
+        <button onClick={() => handleNavigate(3)}>정보</button>
       </div>
 
-      <table className="post-table">
-        <thead>
-          <tr>
-            <th>Post ID</th>
-            <th>닉네임</th>
-            <th>작성일</th>
-            <th>제목</th>
-            <th>내용</th>
-            <th>댓글 수</th>
-            <th>관리</th>
-          </tr>
-        </thead>
-        <tbody>
-          {posts.map((post) => (
-            <tr key={post.postId}>
-              <td>{post.postId}</td>
-              <td>{post.nickname}</td>
-              <td>{post.createdAt}</td>
-              <td onClick={() => setSelectedPost(post)}>{post.title}</td>
-              <td>{post.content}</td>
-              <td>{post.commentCount}</td>
-              <td>
-                <button onClick={() => handleDelete(post.postId)}>삭제</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {/* 상세 모달 */}
-      {selectedPost && (
-        <PostDetailModal
-          communityId={communityId}
-          postId={selectedPost.postId}
-          onClose={() => setSelectedPost(null)}
-        />
-      )}
+      <p className="post-description">
+        왼쪽의 버튼을 눌러 원하는 게시판으로 이동하세요.
+      </p>
     </div>
   );
 };
