@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "../../api/axiosInstance";
-import "./AdminMissionRegister.css"; // ✅ 등록과 같은 스타일 사용
+import "./AdminMissionRegister.css";
 
 const AdminMissionEdit = () => {
   const { missionId } = useParams();

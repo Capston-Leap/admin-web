@@ -9,7 +9,7 @@ const AdminMissionManage = () => {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [selectedMissionId, setSelectedMissionId] = useState(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const fetchMissions = useCallback(() => {
     axios
@@ -73,8 +73,8 @@ const AdminMissionManage = () => {
               <td onClick={() => setSelectedMissionId(mission.id)}>{mission.title}</td>
               <td>
                 <div className="action-buttons">
-                  <button onClick={() => navigate(`/admin/dashboard/mission/edit/${mission.id}`)}>수정</button>
-                  <button onClick={() => handleMissionDelete(mission.id)}>삭제</button>
+                  <button className="edit-btn" onClick={() => navigate(`/admin/dashboard/mission/edit/${mission.id}`)}>수정</button>
+                  <button className="delete-btn" onClick={() => handleMissionDelete(mission.id)}>삭제</button>
                 </div>
               </td>
             </tr>

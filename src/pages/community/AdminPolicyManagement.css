@@ -52,7 +52,10 @@
   padding: 12px;
   border: 1px solid #ddd;
   text-align: center;
-  word-break: break-word;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .policy-table th {

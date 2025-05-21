@@ -36,7 +36,7 @@ const FreePostManagement = () => {
           <div className="post-card" key={post.postId}>
             <div className="post-card-header">
               <span>{post.nickname}</span>
-              <span>{new Date(post.createdAt).toLocaleString()}</span>
+              <span>{new Date(post.createdAt).toLocaleDateString()}</span>
             </div>
             <div className="post-id">Post ID: {post.postId}</div>
             <h3
@@ -63,6 +63,10 @@ const FreePostManagement = () => {
           communityId={communityId}
           postId={selectedPost.postId}
           onClose={() => setSelectedPost(null)}
+          onDelete={() => {
+            setSelectedPost(null);
+            fetchPosts();
+          }}
         />
       )}
     </div>

@@ -1,9 +1,7 @@
-// src/pages/community/AdminPolicyCreate.jsx
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axiosInstance";
-import "./AdminPolicyManagement.css"; // 동일한 스타일 사용
+import "./AdminPolicyManagement.css";
 import "./AdminPolicyCreate.css";
 
 const AdminPolicyCreate = () => {

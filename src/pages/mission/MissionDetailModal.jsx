@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../api/axiosInstance";
+import "./MissionDetailModal.css";
 
 const MissionDetailModal = ({ missionId, onClose }) => {
   const [mission, setMission] = useState(null);
