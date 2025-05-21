@@ -10,6 +10,10 @@ import AdminUserDetail from "./pages/user/AdminUserDetail";
 import AdminMissionManage from "./pages/mission/AdminMissionManage";
 import AdminPostManagement from "./pages/post/AdminPostManagement";
 import AdminPolicyManagement from "./pages/community/AdminPolicyManagement";
+import AdminPolicyCreate from "./pages/community/AdminPolicyCreate";
+import AdminPolicyEdit from "./pages/community/AdminPolicyEdit";
+import AdminMissionRegister from "./pages/mission/AdminMissionRegister";
+import AdminMissionEdit from "./pages/mission/AdminMissionEdit";
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
           <Route path="missionmanage" element={<AdminMissionManage />} />
           <Route path="postmanagement" element={<AdminPostManagement />} />
           <Route path="policymanagement" element={<AdminPolicyManagement />} />
+          <Route path="policymanagement/create" element={<AdminPolicyCreate />} />
+          <Route path="policymanagement/edit/:id" element={<AdminPolicyEdit />} />
+          <Route path="mission/register" element={<AdminMissionRegister />} />
+          <Route path="mission/edit/:missionId" element={<AdminMissionEdit />} />
         </Route>
       </Routes>
     </Router>

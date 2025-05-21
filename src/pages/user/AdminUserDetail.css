@@ -87,3 +87,22 @@
 .withdraw-button:hover {
   background-color: #d32f2f;
 }
+
+.admin-user-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 10px auto;
+  padding: 20px;
+  font-family: sans-serif;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* 작은 화면에서 스크롤 허용 */
+  box-sizing: border-box;
+}
+
+.admin-user-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
