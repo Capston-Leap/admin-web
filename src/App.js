@@ -17,7 +17,7 @@ import AdminPostManagement from "./pages/post/AdminPostManagement";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/leap">
       <Routes>
         {/* 로그인/회원가입 (단독 페이지) */}
         <Route path="/admin/login" element={<AdminLogin />} />
