@@ -16,8 +16,6 @@ const AdminMissionRegister = () => {
     ],
   });
 
-  const [selectedStep, setSelectedStep] = useState(1);
-
   const handleSubmit = () => {
     axios.post("/admin/mission", form)
       .then(() => {
@@ -27,13 +25,9 @@ const AdminMissionRegister = () => {
       .catch(() => alert("등록 실패"));
   };
 
-  const handleStepChange = (e) => {
-    setSelectedStep(Number(e.target.value));
-  };
-
-  const handleStepDescriptionChange = (e) => {
+  const handleStepDescriptionChange = (index, value) => {
     const newSteps = [...form.steps];
-    newSteps[selectedStep - 1].description = e.target.value;
+    newSteps[index].description = value;
     setForm({ ...form, steps: newSteps });
   };
 
@@ -67,31 +61,29 @@ const AdminMissionRegister = () => {
 
           <div className="form-group">
             <label>카테고리</label>
-            <input
-              placeholder="카테고리를 입력하세요"
+            <select
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value })}
-            />
-          </div>
-
-          <div className="form-group">
-            <label>단계 선택</label>
-            <select value={selectedStep} onChange={handleStepChange}>
-              <option value={1}>단계 1</option>
-              <option value={2}>단계 2</option>
-              <option value={3}>단계 3</option>
+            >
+              <option value="">-- 카테고리를 선택하세요 --</option>
+              <option value="SELF">SELF</option>
+              <option value="MONEY">MONEY</option>
+              <option value="SOCIETY">SOCIETY</option>
+              <option value="LIFE">LIFE</option>
             </select>
           </div>
 
-          <div className="form-group">
-            <label>{`단계 ${selectedStep} 설명`}</label>
-            <input
-              placeholder={`단계 ${selectedStep} 설명을 입력하세요`}
-              value={form.steps[selectedStep - 1].description}
-              onChange={handleStepDescriptionChange}
-            />
-          </div>
-
+          {/* 단계별 설명 모두 표시 */}
+          {form.steps.map((step, index) => (
+            <div className="form-group" key={step.stepNum}>
+              <label>{`단계 ${step.stepNum} 설명`}</label>
+              <input
+                placeholder={`단계 ${step.stepNum} 설명을 입력하세요`}
+                value={step.description}
+                onChange={(e) => handleStepDescriptionChange(index, e.target.value)}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

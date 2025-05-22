@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "../../api/axiosInstance";
 import "./PostDetailModal.css";
 
@@ -6,7 +6,8 @@ const PostDetailModal = ({ communityId, postId, onClose, onDelete }) => {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
 
-  useEffect(() => {
+  // ✅ useCallback으로 fetchPostDetail 정의
+  const fetchPostDetail = useCallback(() => {
     axios
       .get(`/admin/community/${communityId}/${postId}`)
       .then((res) => {
@@ -18,6 +19,11 @@ const PostDetailModal = ({ communityId, postId, onClose, onDelete }) => {
         alert("게시글 상세 조회 실패");
       });
   }, [communityId, postId]);
+
+  // ✅ useEffect에 fetchPostDetail을 의존성으로 명시
+  useEffect(() => {
+    fetchPostDetail();
+  }, [fetchPostDetail]);
 
   const handlePostDelete = () => {
     if (!window.confirm("정말 이 게시글을 삭제하시겠습니까?")) return;
@@ -36,10 +42,10 @@ const PostDetailModal = ({ communityId, postId, onClose, onDelete }) => {
   const handleCommentDelete = (commentId) => {
     if (!window.confirm("이 댓글을 삭제하시겠습니까?")) return;
     axios
-      .delete(`/admin/community/${communityId}/${postId}/comment/${commentId}`)
+      .delete(`/admin/community/${communityId}/${postId}/${commentId}`)
       .then(() => {
         alert("댓글 삭제 완료");
-        setComments((prev) => prev.filter((c) => c.commentId !== commentId));
+        fetchPostDetail(); // ✅ 삭제 후 최신 댓글 불러오기
       })
       .catch((err) => {
         console.error("댓글 삭제 실패", err);
@@ -59,7 +65,7 @@ const PostDetailModal = ({ communityId, postId, onClose, onDelete }) => {
 
         <div className="modal-body">
           <p><strong>작성자:</strong> {post.nickname}</p>
-          <p><strong>작성일:</strong> {new Date(post.createdAt).toLocaleDateString()}</p>
+          <p><strong>작성일:</strong> {new Date(post.createdAt).toLocaleDateString("ko-KR")}</p>
           <p><strong>내용:</strong></p>
           <p>{post.content}</p>
           <button onClick={handlePostDelete} className="delete-btn">게시글 삭제</button>
@@ -73,9 +79,14 @@ const PostDetailModal = ({ communityId, postId, onClose, onDelete }) => {
                 <li key={comment.commentId}>
                   <div>
                     <p><strong>{comment.nickname}</strong>: {comment.content}</p>
-                    <p className="comment-time">{new Date(comment.createdAt).toLocaleDateString()}</p>
+                    <p className="comment-time">{new Date(comment.createdAt).toLocaleDateString("ko-KR")}</p>
                   </div>
-                  <button className="comment-delete-btn" onClick={() => handleCommentDelete(comment.commentId)}>댓글 삭제</button>
+                  <button
+                    className="comment-delete-btn"
+                    onClick={() => handleCommentDelete(comment.commentId)}
+                  >
+                    댓글 삭제
+                  </button>
                 </li>
               ))}
             </ul>
