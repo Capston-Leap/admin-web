@@ -8,5 +8,5 @@ export const handleLogout = async () => {
   }
 
   localStorage.removeItem("adminToken");
-  window.location.href = "/admin/login";
+  window.location.href = "http://ceprj.gachon.ac.kr:60013/leap/admin/login";
 };
