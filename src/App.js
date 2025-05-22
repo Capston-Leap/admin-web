@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -11,10 +10,10 @@ import AdminMissionManage from "./pages/mission/AdminMissionManage";
 import AdminPolicyManagement from "./pages/community/AdminPolicyManagement";
 import AdminPolicyCreate from "./pages/community/AdminPolicyCreate";
 import AdminPolicyEdit from "./pages/community/AdminPolicyEdit";
+import AdminPolicyDetail from "./pages/community/AdminPolicyDetail";
 import AdminMissionRegister from "./pages/mission/AdminMissionRegister";
 import AdminMissionEdit from "./pages/mission/AdminMissionEdit";
 import AdminPostManagement from "./pages/post/AdminPostManagement";
-
 
 function App() {
   return (
@@ -32,6 +31,7 @@ function App() {
           <Route path="policymanagement" element={<AdminPolicyManagement />} />
           <Route path="policymanagement/create" element={<AdminPolicyCreate />} />
           <Route path="policymanagement/edit/:id" element={<AdminPolicyEdit />} />
+          <Route path="policymanagement/detail/:informationId" element={<AdminPolicyDetail />} /> {/* ✅ 이동 */}
           <Route path="mission/register" element={<AdminMissionRegister />} />
           <Route path="mission/edit/:missionId" element={<AdminMissionEdit />} />
           <Route path="postmanagement" element={<AdminPostManagement />} />

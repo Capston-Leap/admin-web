@@ -15,8 +15,23 @@ const AdminPolicyManagement = () => {
         params: { page, size: 10 },
       })
       .then((res) => {
-        setPolicies(res.data.content);
-        setTotalPages(res.data.totalPages);
+        const content = res.data?.content;
+
+        if (!Array.isArray(content)) {
+          console.error("응답 형식이 잘못되었습니다:", res.data);
+          return;
+        }
+
+        const mapped = content.map((item, index) => ({
+          id: item.id ?? `policy-${index}`,
+          category: item.category,
+          title: item.title,
+          description: item.description,
+          url: item.url,
+        }));
+
+        setPolicies(mapped);
+        setTotalPages(res.data.totalPages || 1);
       })
       .catch((err) => {
         console.error("목록 조회 실패", err);
@@ -56,7 +71,7 @@ const AdminPolicyManagement = () => {
       <h2>자립지원정보 관리</h2>
 
       <div className="toolbar" style={{ textAlign: "right", marginBottom: "16px" }}>
-        <button onClick={() => navigate("create")}>등록</button>
+        <button onClick={() => navigate("/admin/dashboard/policymanagement/create")}>등록</button>
       </div>
 
       <table className="policy-table">
@@ -74,18 +89,25 @@ const AdminPolicyManagement = () => {
             <tr key={policy.id}>
               <td>{policy.category}</td>
               <td>
-                <a href={policy.url} target="_blank" rel="noreferrer">
+                <span
+                  onClick={() =>
+                    navigate(`/admin/dashboard/policymanagement/detail/${policy.id}`)
+                  }
+                  style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+                >
                   {policy.title}
-                </a>
+                </span>
               </td>
-              <td>{policy.content}</td>
+              <td>{policy.description}</td>
               <td>
                 <a href={policy.url} target="_blank" rel="noreferrer">
                   바로가기
                 </a>
               </td>
               <td>
-                <button onClick={() => navigate(`edit/${policy.id}`)}>수정</button>
+                <button onClick={() => navigate(`/admin/dashboard/policymanagement/edit/${policy.id}`)}>
+                  수정
+                </button>
                 <button onClick={() => handleDelete(policy.id)}>삭제</button>
               </td>
             </tr>

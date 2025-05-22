@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "../../api/axiosInstance";
-import "./AdminMissionRegister.css"; // ✅ 등록과 같은 스타일 사용
+import "./AdminMissionRegister.css";
 
 const AdminMissionEdit = () => {
   const { missionId } = useParams();
@@ -10,14 +10,36 @@ const AdminMissionEdit = () => {
     title: "",
     description: "",
     category: "",
-    steps: [{ stepNum: 1, description: "" }],
+    steps: [
+      { stepNum: 1, description: "" },
+      { stepNum: 2, description: "" },
+      { stepNum: 3, description: "" }
+    ],
   });
 
   useEffect(() => {
     axios.get(`/admin/mission/${missionId}`)
-      .then((res) => setForm(res.data))
+      .then((res) => {
+        // 받아온 데이터에 steps가 부족하면 보정
+        const fetchedSteps = res.data.steps || [];
+        const paddedSteps = [1, 2, 3].map(num => {
+          const step = fetchedSteps.find(s => s.stepNum === num);
+          return step ? step : { stepNum: num, description: "" };
+        });
+
+        setForm({
+          ...res.data,
+          steps: paddedSteps
+        });
+      })
       .catch(() => alert("불러오기 실패"));
   }, [missionId]);
+
+  const handleStepChange = (index, value) => {
+    const newSteps = [...form.steps];
+    newSteps[index].description = value;
+    setForm({ ...form, steps: newSteps });
+  };
 
   const handleUpdate = () => {
     axios.patch(`/admin/mission/${missionId}`, form)
@@ -57,25 +79,30 @@ const AdminMissionEdit = () => {
 
           <div className="form-group">
             <label>카테고리</label>
-            <input
-              placeholder="카테고리를 입력하세요"
+            <select
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value })}
-            />
+            >
+              <option value="">-- 카테고리를 선택하세요 --</option>
+              <option value="SELF">SELF</option>
+              <option value="MONEY">MONEY</option>
+              <option value="SOCIETY">SOCIETY</option>
+              <option value="LIFE">LIFE</option>
+            </select>
           </div>
 
-          <div className="form-group">
-            <label>단계 설명</label>
-            <input
-              placeholder="단계 설명을 입력하세요"
-              value={form.steps[0].description}
-              onChange={(e) => {
-                const steps = [...form.steps];
-                steps[0].description = e.target.value;
-                setForm({ ...form, steps });
-              }}
-            />
-          </div>
+          {/* 단계 1~3 설명 입력 필드 */}
+          {form.steps.map((step, index) => (
+            <div className="form-group" key={step.stepNum}>
+              <label>{`단계 ${step.stepNum} 설명`}</label>
+              <input
+                placeholder={`단계 ${step.stepNum} 설명을 입력하세요`}
+                value={step.description}
+                onChange={(e) => handleStepChange(index, e.target.value)}
+              />
+            </div>
+          ))}
+
         </div>
       </div>
     </div>
